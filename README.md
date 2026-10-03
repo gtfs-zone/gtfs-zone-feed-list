@@ -1,5 +1,7 @@
 # gtfs-zone-feed-list
 
+[![CI](https://img.shields.io/github/actions/workflow/status/gtfs-zone/gtfs-zone-feed-list/check.yml?branch=main&label=CI)](https://github.com/gtfs-zone/gtfs-zone-feed-list/actions/workflows/check.yml?query=branch%3Amain) [![License: AGPL-3.0-or-later](https://img.shields.io/badge/license-AGPL--3.0--or--later-blue)](LICENSE.txt) [![list.gtfs.zone](https://img.shields.io/website?url=https%3A%2F%2Flist.gtfs.zone&label=list.gtfs.zone)](https://list.gtfs.zone) [![Container image](https://img.shields.io/badge/image-ghcr.io-blue?logo=docker&logoColor=white)](https://github.com/gtfs-zone/gtfs-zone-feed-list/pkgs/container/gtfs-zone-feed-list)
+
 A list and a world map of every public GTFS and GTFS Realtime feed, and whether
 each one still answers. Deployed at `list.gtfs.zone`.
 
