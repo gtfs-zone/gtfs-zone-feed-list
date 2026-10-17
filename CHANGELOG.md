@@ -1,3 +1,11 @@
+## v0.7.0 (2026-10-17)
+
+### Feat
+
+- **seo**: lead the title and description with fast, free, and open source
+- add the language toggle to the navbar
+- translate the UI into French through t() and the fmt helpers
+
 ## v0.6.0 (2026-10-02)
 
 ### Feat
