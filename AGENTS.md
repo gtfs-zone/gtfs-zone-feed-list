@@ -30,9 +30,9 @@ in `src/modules/`.
 - **Every focus change goes through `appState.setFocus`.** The sidebar and the
   camera react to `onFocusChange`, not to each other.
 - **State split**: filters (`q`, `status`, `rt`) in Home's hash; a Feed or Source
-  hash carries only the page. Map view, basemap and last filters go in
-  localStorage under `gc.`-prefixed keys; `theme` stays un-prefixed and shared
-  across gtfs.zone sites. `near` sort is in memory only.
+  hash carries only the page. Nothing else is persisted: the only localStorage
+  key is web-common's `theme`, shared across gtfs.zone sites. Map view, basemap
+  and `near` sort are in memory only.
 - Feed states, role labels and search matching come from gtfs-zone-web-common's
   `gtfs/feed-catalog`, `gtfs/feed-badges` and `gtfs/feed-search`.
 - Cluster counts are HTML markers: the shared raster basemaps have no `glyphs`

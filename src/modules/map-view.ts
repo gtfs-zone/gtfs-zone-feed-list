@@ -31,7 +31,6 @@ import {
 import { fitPadding } from 'gtfs-zone-web-common/map/fit-padding';
 import { SearchPlaceMarker } from 'gtfs-zone-web-common/map/place-search';
 import type { PlacePayload } from 'gtfs-zone-web-common/map/place-search';
-import type { MapAppearance } from 'gtfs-zone-web-common/map/basemap-control';
 import {
   clearThemeColorCache,
   resolveThemeColor,
@@ -41,12 +40,6 @@ import { CONFIG } from '../config';
 import type { Feed, Place, State } from '../data/artifacts';
 import { t } from '../i18n/messages';
 import { STATE_LABELS } from './labels';
-import { readStored, writeStored } from './storage';
-
-interface MapView {
-  center: [number, number];
-  zoom: number;
-}
 
 interface PointProps {
   id: string;
@@ -66,20 +59,6 @@ const EMPTY: FeatureCollection<Point, PointProps> = {
   features: [],
 };
 
-function restoreView(): MapView {
-  const stored = readStored<MapView>(CONFIG.MAP_VIEW_KEY);
-  if (
-    !stored ||
-    !Array.isArray(stored.center) ||
-    stored.center.length !== 2 ||
-    !stored.center.every(Number.isFinite) ||
-    typeof stored.zoom !== 'number'
-  ) {
-    return { center: CONFIG.DEFAULT_CENTER, zoom: CONFIG.DEFAULT_ZOOM };
-  }
-  return { center: stored.center as [number, number], zoom: stored.zoom };
-}
-
 function abbreviate(n: number): string {
   return n >= 10_000
     ? `${Math.round(n / 1000)}k`
@@ -98,7 +77,6 @@ export class GlobeMap {
   // whenever the data changes.
   private markers = new Map<number, maplibregl.Marker>();
   private onScreen = new Map<number, maplibregl.Marker>();
-  private saveTimer: ReturnType<typeof setTimeout> | null = null;
   private hover: maplibregl.Popup;
   private placeMarker: SearchPlaceMarker;
 
@@ -106,26 +84,18 @@ export class GlobeMap {
   onEmptyClick: (() => void) | null = null;
 
   constructor(container: string, onSelect: (feedId: string) => void) {
-    const view = restoreView();
-    const appearance =
-      readStored<MapAppearance>(CONFIG.MAP_APPEARANCE_KEY) ?? {};
-
     // maplibre resolves its worker relative to its own module URL, which
     // breaks once Vite bundles or pre-bundles it; point it at a Vite-built copy.
     maplibregl.setWorkerUrl(maplibreWorkerUrl);
     this.map = new maplibregl.Map({
       container,
-      style: initialMapStyle(appearance),
-      center: view.center,
-      zoom: view.zoom,
+      style: initialMapStyle({}),
+      center: CONFIG.DEFAULT_CENTER,
+      zoom: CONFIG.DEFAULT_ZOOM,
       attributionControl: { compact: true },
     });
     this.map.addControl(new maplibregl.NavigationControl(), 'bottom-left');
-    new BasemapControl(this.map, {
-      initial: appearance,
-      onAppearanceChange: (next) =>
-        writeStored(CONFIG.MAP_APPEARANCE_KEY, next),
-    });
+    new BasemapControl(this.map, {});
 
     this.autoZoom = new AutoZoom(() => this.focusSelected());
     this.hover = new maplibregl.Popup({
@@ -143,7 +113,6 @@ export class GlobeMap {
       this.placeMarker.redraw();
     });
     this.map.on('render', () => this.updateClusterMarkers());
-    this.map.on('moveend', () => this.queueViewSave());
 
     this.map.on('click', (e: MapMouseEvent) => {
       const hit = this.map.getLayer(POINT_LAYER)
@@ -504,19 +473,5 @@ export class GlobeMap {
       }
     }
     this.onScreen = next;
-  }
-
-  private queueViewSave(): void {
-    if (this.saveTimer !== null) {
-      clearTimeout(this.saveTimer);
-    }
-    this.saveTimer = setTimeout(() => {
-      this.saveTimer = null;
-      const center = this.map.getCenter();
-      writeStored(CONFIG.MAP_VIEW_KEY, {
-        center: [center.lng, center.lat],
-        zoom: this.map.getZoom(),
-      });
-    }, CONFIG.MAP_VIEW_SAVE_DEBOUNCE);
   }
 }

@@ -44,15 +44,6 @@ export const CONFIG = Object.freeze({
     unknown: '#94a3b8',
   },
 
-  // Per-device preferences, gc.-namespaced so they never collide with a
-  // sibling app on another subdomain sharing the same browser profile. The
-  // `theme` key is deliberately not here: it stays un-namespaced so the moon
-  // toggle agrees across every gtfs.zone site.
-  MAP_VIEW_KEY: 'gc.map.view',
-  MAP_APPEARANCE_KEY: 'gc.map.appearance',
-  FILTERS_KEY: 'gc.filters',
-  MAP_VIEW_SAVE_DEBOUNCE: 400,
-
   // Sibling apps a feed can be opened in. Hardcoded to prod on purpose, as in
   // gtfs-zone-rt-viewer: a shared link should always land on the stable public app.
   EDITOR_BASE: 'https://edit.gtfs.zone',

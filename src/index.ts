@@ -45,7 +45,6 @@ import {
   FeedFilter,
   filterParams,
   readFilters,
-  saveFilters,
   sameFilters,
 } from './modules/filters';
 import {
@@ -113,7 +112,7 @@ bottomSheet.onSnapChange((covered) => map.setBottomPadding(covered));
 let index: CatalogueIndex | null = null;
 let feedFilter: FeedFilter | null = null;
 let searchEntries: SearchEntries | null = null;
-let filters: Filters = readFilters(window.location.hash.slice(1), true);
+let filters: Filters = readFilters(window.location.hash.slice(1));
 let filtered: Feed[] = [];
 // A picked place Home is sorted by distance from; kept out of the hash.
 let near: Near | null = null;
@@ -205,7 +204,6 @@ function applyFilters(): void {
 
 function setFilters(next: Partial<Filters>): void {
   filters = { ...filters, ...next };
-  saveFilters(filters);
   appState.setFilterParams(filterParams(filters));
   syncControls();
   applyFilters();

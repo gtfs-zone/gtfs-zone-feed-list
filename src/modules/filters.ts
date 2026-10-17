@@ -1,19 +1,14 @@
 /**
- * Filter state, its two homes, and the matching itself.
+ * Filter state and the matching itself.
  *
- * Home's URL hash is what a shared link carries: `q`, `status` (a comma list
- * of states) and `rt`. The same filters are also kept per device in
- * localStorage, and restored only when a visit arrives with no filters in the
- * hash, so a filtered link always wins over whatever the recipient last looked
- * at. The text matching is gtfs-zone-web-common's, so a query finds the same feeds
+ * Filters live only in Home's URL hash: `q`, `status` (a comma list of states)
+ * and `rt`. The text matching is gtfs-zone-web-common's, so a query finds the same feeds
  * here as in the editor's and the viewer's pickers.
  */
 
 import { FeedMatcher } from 'gtfs-zone-web-common/gtfs/feed-search';
-import { CONFIG } from '../config';
 import type { Feed, State } from '../data/artifacts';
 import { STATES, hasRealtime } from '../data/artifacts';
-import { readStored, writeStored } from './storage';
 
 export interface Filters {
   q: string;
@@ -23,34 +18,14 @@ export interface Filters {
   rt: boolean;
 }
 
-const FILTER_KEYS = ['q', 'status', 'rt'];
-
-function parseStatus(value: unknown): State[] {
-  const parts =
-    typeof value === 'string'
-      ? value.split(',')
-      : Array.isArray(value)
-        ? value
-        : [];
+function parseStatus(value: string | null): State[] {
+  const parts = value ? value.split(',') : [];
   return STATES.filter((state) => parts.includes(state));
 }
 
-/**
- * Filters from a hash. At boot (`fromDevice`), a hash naming no filter falls
- * back to the device's last filters; a later hash change never does, since an empty
- * hash then means the filters were cleared.
- */
-export function readFilters(hash: string, fromDevice = false): Filters {
+/** Filters from a hash. */
+export function readFilters(hash: string): Filters {
   const params = new URLSearchParams(hash);
-  const named = FILTER_KEYS.some((key) => params.has(key));
-  if (fromDevice && !named) {
-    const stored = readStored<Filters>(CONFIG.FILTERS_KEY);
-    return {
-      q: typeof stored?.q === 'string' ? stored.q : '',
-      status: parseStatus(stored?.status),
-      rt: stored?.rt === true,
-    };
-  }
   return {
     q: params.get('q') ?? '',
     status: parseStatus(params.get('status')),
@@ -71,10 +46,6 @@ export function filterParams(filters: Filters): Record<string, string> {
     params.rt = '1';
   }
   return params;
-}
-
-export function saveFilters(filters: Filters): void {
-  writeStored(CONFIG.FILTERS_KEY, filters);
 }
 
 export function sameFilters(a: Filters, b: Filters): boolean {
