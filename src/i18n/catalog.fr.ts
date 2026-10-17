@@ -3,7 +3,8 @@ import type { en } from './catalog.en';
 
 /** list.gtfs.zone's UI strings, in French. */
 export const fr: Translation<typeof en> = {
-  'app.title': 'list.gtfs.zone - Tous les flux GTFS publics',
+  'app.title':
+    'list.gtfs.zone - Tous les flux GTFS publics, rapide, gratuit et open source',
 
   'shell.loading': 'Chargement du catalogue',
   'shell.browse': 'Parcourir',

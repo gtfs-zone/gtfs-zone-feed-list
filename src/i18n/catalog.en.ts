@@ -1,6 +1,7 @@
 /** list.gtfs.zone's UI strings, in English: the source of the keys. */
 export const en = {
-  'app.title': 'list.gtfs.zone - Every public GTFS feed',
+  'app.title':
+    'list.gtfs.zone - Every public GTFS feed, fast, free and open source',
 
   'shell.loading': 'Loading the catalogue',
   'shell.browse': 'Browse',
