@@ -1,3 +1,13 @@
+## v0.8.0 (2026-10-18)
+
+### Feat
+
+- **status**: say never seen up for a feed no check has seen up
+
+### Refactor
+
+- stop persisting filters and map prefs in localStorage
+
 ## v0.7.0 (2026-10-17)
 
 ### Feat
