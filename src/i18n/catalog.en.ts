@@ -47,6 +47,7 @@ export const en = {
 
   'status.needsKey': 'needs an API key',
   'status.downSince': 'down since {date}',
+  'status.neverUp': 'never seen up',
   'status.upSince': 'up since {date}',
   'status.partialSince': 'partial since {date}',
   'status.notAnswering': 'not answering',
@@ -111,7 +112,8 @@ export const en = {
   'hint.error': 'Why the last check failed.',
   'hint.latency': 'How long the last check took to answer.',
   'hint.failures': 'Consecutive daily checks that failed.',
-  'hint.downSince': 'When the URL stopped answering.',
+  'hint.downSince':
+    'When the URL stopped answering, or never seen up if no check has seen it answer.',
   'hint.stateSince': 'When the current state was first seen.',
   'hint.access': 'URLs that need an API key are never checked.',
 
@@ -191,7 +193,7 @@ export const en = {
     'Its schedule answered, but at least one realtime role did not. Without a checked schedule, some realtime roles answered and some did not.',
   'help.states.down': 'Down',
   'help.states.downText':
-    'Its schedule did not answer. "Down since" is when it stopped answering. Without a checked schedule, none of its realtime roles answered.',
+    'Its schedule did not answer. "Down since" is when it stopped answering, or "never seen up" if no check has seen it answer. Without a checked schedule, none of its realtime roles answered.',
   'help.states.unknown': 'Inaccessible',
   'help.states.unknownText':
     'Nothing it lists could be checked: every URL needs an API key, or none has been checked yet.',

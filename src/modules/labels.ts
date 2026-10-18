@@ -172,7 +172,9 @@ export function statusLine(
     parts.push(`HTTP ${entry.code}`);
   }
   // `since` on a down row is when it went down; it has not answered since then.
-  if (entry?.since) {
+  if (entry?.never_up) {
+    parts.push(t('status.neverUp'));
+  } else if (entry?.since) {
     parts.push(t('status.downSince', { date: formatDate(entry.since) }));
   }
   return parts.join(', ');
@@ -181,6 +183,9 @@ export function statusLine(
 /** A feed's state in a few words: since when it is down or partial, or why it is inaccessible. */
 export function feedStatusLine(feed: Feed): string {
   if (feed.state === 'down') {
+    if (feed.neverUp) {
+      return t('status.neverUp');
+    }
     return feed.since
       ? t('status.downSince', { date: formatDate(feed.since) })
       : t('status.notAnswering');

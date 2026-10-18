@@ -122,6 +122,8 @@ export interface Feed extends Place {
   lastModified?: string;
   /** When the feed's overall state was reached. */
   since?: string;
+  /** Down, and no check has ever seen it up. */
+  neverUp?: boolean;
   /** Only for feeds sites.gtfs.zone builds a timetable site from. */
   content?: FeedContent;
 }
@@ -139,6 +141,8 @@ export interface StatusEntry {
   failures?: number;
   /** When the current state was first seen. For a down row, when it went down. */
   since?: string;
+  /** Down, and no check has ever seen it up. */
+  never_up?: boolean;
 }
 
 export interface Summary {

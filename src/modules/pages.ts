@@ -412,7 +412,7 @@ function renderFeed(ctx: PageContext, feed: Feed): string {
   return `
     ${feed.subtitle ? `<p class="text-sm opacity-70">${escapeHtml(feed.subtitle)}</p>` : ''}
     <div class="flex flex-wrap items-center gap-2">
-      ${feedStateBadge(feed.state, feed.since, 'md')}
+      ${feedStateBadge(feed.state, feed.since, 'md', feed.neverUp)}
       ${roleChips(feed, 'sm')}
       ${line ? `<span class="text-sm ${LINE_CLASS[feed.state]}">${escapeHtml(line)}</span>` : ''}
       ${feed.state === 'up' && feed.since ? `<span class="text-sm opacity-70">${t('status.upSince', { date: formatDate(feed.since) })}</span>` : ''}
@@ -528,7 +528,7 @@ function renderSource(ctx: PageContext, row: SourceRow): string {
           ${field('error', escapeHtml(entry?.error ?? ''))}
           ${field('latency', entry?.latency_ms !== undefined ? formatMs(entry.latency_ms) : '')}
           ${field('failures', entry?.failures ? formatCount(entry.failures) : '')}
-          ${field(state === 'down' ? 'downSince' : 'stateSince', formatDate(entry?.since))}
+          ${field(state === 'down' ? 'downSince' : 'stateSince', entry?.never_up ? t('status.neverUp') : formatDate(entry?.since))}
           ${field('access', row.auth ? t('status.needsKey') : '')}
         </tbody>
       </table>

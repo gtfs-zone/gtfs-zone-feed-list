@@ -51,6 +51,7 @@ export const fr: Translation<typeof en> = {
 
   'status.needsKey': "nécessite une clé d'API",
   'status.downSince': 'hors service depuis le {date}',
+  'status.neverUp': 'jamais vu en service',
   'status.upSince': 'en service depuis le {date}',
   'status.partialSince': 'partiel depuis le {date}',
   'status.notAnswering': 'ne répond pas',
@@ -116,7 +117,8 @@ export const fr: Translation<typeof en> = {
   'hint.error': 'Pourquoi la dernière vérification a échoué.',
   'hint.latency': 'Le temps de réponse lors de la dernière vérification.',
   'hint.failures': 'Les vérifications quotidiennes consécutives en échec.',
-  'hint.downSince': "Quand l'URL a cessé de répondre.",
+  'hint.downSince':
+    "Quand l'URL a cessé de répondre, ou jamais vu en service si aucune vérification ne l'a vue répondre.",
   'hint.stateSince':
     "Quand l'état actuel a été constaté pour la première fois.",
   'hint.access':
@@ -199,7 +201,7 @@ export const fr: Translation<typeof en> = {
     "Ses horaires ont répondu, mais au moins un rôle temps réel non. Sans horaires vérifiés, certains rôles temps réel ont répondu et d'autres non.",
   'help.states.down': 'Hors service',
   'help.states.downText':
-    "Ses horaires n'ont pas répondu. « Hors service depuis » indique quand ils ont cessé de répondre. Sans horaires vérifiés, aucun de ses rôles temps réel n'a répondu.",
+    "Ses horaires n'ont pas répondu. « Hors service depuis » indique quand ils ont cessé de répondre, ou « jamais vu en service » si aucune vérification ne les a vus répondre. Sans horaires vérifiés, aucun de ses rôles temps réel n'a répondu.",
   'help.states.unknown': 'Inaccessible',
   'help.states.unknownText':
     "Rien de ce qu'il liste n'a pu être vérifié : chaque URL nécessite une clé d'API, ou aucune n'a encore été vérifiée.",
