@@ -4,7 +4,10 @@ import {
   renderSunIcon,
   type NavIconName,
 } from 'gtfs-zone-web-common/ui/nav-icons';
-import type { NavbarAction } from 'gtfs-zone-web-common/ui/navbar-actions';
+import {
+  githubAction,
+  type NavbarAction,
+} from 'gtfs-zone-web-common/ui/navbar-actions';
 import { t } from '../i18n/messages';
 
 /**
@@ -28,6 +31,7 @@ export const NAVBAR_ACTIONS: NavbarAction[] = [
     icon: renderNavIcon('guide'),
   },
   { kind: 'locale', id: 'locale-toggle' },
+  githubAction('gtfs-zone-feed-list'),
 ];
 
 /** Icons the mobile dock shares with the navbar, by element id. */
