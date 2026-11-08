@@ -65,9 +65,9 @@ export class AppState extends FocusController<
   replaceHash(): void {
     const hash = this.pages.buildHash(this.focus);
     if (hash !== window.location.hash.slice(1)) {
-      // replaceState fires no hashchange, so the manager's suppress flag stays clear.
+      // Keeps the entry's history.state, which the manager reads to close modals.
       window.history.replaceState(
-        null,
+        window.history.state,
         '',
         hash
           ? `#${hash}`

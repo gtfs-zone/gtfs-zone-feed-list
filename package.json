@@ -43,7 +43,8 @@
     "@leeoniya/ufuzzy": "^1.0.19",
     "@tailwindcss/postcss": "^4.3.3",
     "daisyui": "^5.7.46",
-    "gtfs-zone-web-common": "github:gtfs-zone/gtfs-zone-web-common#v5.15.0",
+    "gtfs-zone-vocab": "github:gtfs-zone/gtfs-zone-vocab#v0.2.0",
+    "gtfs-zone-web-common": "github:gtfs-zone/gtfs-zone-web-common#v5.20.0",
     "maplibre-gl": "^6.11.2"
   }
 }
