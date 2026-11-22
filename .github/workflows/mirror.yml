@@ -1,0 +1,44 @@
+name: Mirror
+
+# Every hour at :17 UTC: runs scripts/mirror.py, which copies a new catalog run
+# from data.gtfs.zone into data/ (each file checked against manifest.json's
+# sha256) and renders the README stats, then commits and pushes if anything
+# changed. Uses only this workflow's GITHUB_TOKEN.
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: mirror
+  cancel-in-progress: false
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+
+      - name: Mirror
+        run: python3 scripts/mirror.py
+
+      - name: Commit
+        run: |
+          git add data README.md
+          if git diff --cached --quiet; then
+            echo "No new catalog run"
+            exit 0
+          fi
+          run_id=$(python3 -c "import json; print(json.load(open('data/manifest.json'))['run_id'])")
+          generated_at=$(python3 -c "import json; print(json.load(open('data/manifest.json'))['generated_at'])")
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(data): catalog run ${run_id}" -m "Published at ${generated_at}."
+          git push
