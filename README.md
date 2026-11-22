@@ -43,13 +43,13 @@ here or in
 Rendered from `data/` by the mirror on every update.
 
 <!-- stats:start -->
-From catalog run `dfe66cc1-a94a-400b-98c4-2ddafebec890`, published 2026-11-21 23:38 UTC.
+From catalog run `0d5e3aa1-0d89-40d3-9c36-0993c7ffd678`, published 2026-11-22 14:29 UTC.
 
 | | |
 |---|---:|
 | Catalog entries (one per listed URL) | 12,778 |
-| Feeds, after joining entries for the same feed | 6,444 |
-| Feeds with realtime | 1,145 |
+| Feeds, after joining entries for the same feed | 6,401 |
+| Feeds with realtime | 1,125 |
 | Countries | 96 |
 
 | Catalog | Entries |
@@ -61,15 +61,15 @@ From catalog run `dfe66cc1-a94a-400b-98c4-2ddafebec890`, published 2026-11-21 23
 
 | Feed state | Feeds |
 |---|---:|
-| up | 4,685 |
-| partial | 107 |
-| down | 1,459 |
+| up | 4,638 |
+| partial | 106 |
+| down | 1,464 |
 | unknown | 193 |
 
 | Schedule download | Feeds |
 |---|---:|
-| ok | 4,660 |
-| not_zip | 120 |
+| ok | 4,615 |
+| not_zip | 123 |
 | missing_files | 22 |
 | http_error | 19 |
 | parse_error | 8 |
