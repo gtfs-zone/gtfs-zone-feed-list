@@ -168,15 +168,6 @@ def render_source_stats(stats: dict) -> list[str]:
         "|---|---:|",
         *(f"| {evidence} | {n(count)} |" for evidence, count in dup["byEvidence"].items()),
     ]
-    if close := stats.get("closeDuplicates"):
-        lines += [
-            "",
-            "Close duplicates: feeds not joined, but near-identical.",
-            "",
-            "| Kind | Pairs |",
-            "|---|---:|",
-            *(f"| {kind} | {n(count)} |" for kind, count in close["byKind"].items()),
-        ]
     return lines
 
 
