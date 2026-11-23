@@ -43,13 +43,13 @@ here or in
 Rendered from `data/` by the mirror on every update.
 
 <!-- stats:start -->
-From catalog run `090d3343-059d-4845-aa62-1a571566c1a8`, published 2026-11-22 22:28 UTC.
+From catalog run `2155f3b3-a253-475a-960f-3d814de5b121`, published 2026-11-23 13:10 UTC.
 
 | | |
 |---|---:|
 | Catalog entries (one per listed URL) | 12,778 |
-| Feeds, after joining entries for the same feed | 6,410 |
-| Feeds with realtime | 1,126 |
+| Feeds, after joining entries for the same feed | 6,411 |
+| Feeds with realtime | 1,127 |
 | Countries | 96 |
 
 | Catalog | Entries |
@@ -61,20 +61,66 @@ From catalog run `090d3343-059d-4845-aa62-1a571566c1a8`, published 2026-11-22 22
 
 | Feed state | Feeds |
 |---|---:|
-| up | 4,647 |
-| partial | 106 |
-| down | 1,464 |
+| up | 4,651 |
+| partial | 108 |
+| down | 1,459 |
 | unknown | 193 |
 
 | Schedule download | Feeds |
 |---|---:|
-| ok | 4,624 |
-| not_zip | 123 |
+| ok | 4,629 |
+| not_zip | 118 |
 | missing_files | 22 |
 | http_error | 19 |
 | parse_error | 8 |
 | timeout | 5 |
 | empty | 2 |
+| memory | 1 |
+
+### Overlap between catalogs
+
+Feeds with a schedule, by catalog, and how many no other catalog lists.
+
+| Catalog | Feeds | Only in this catalog |
+|---|---:|---:|
+| Mobility Database | 4,505 | 2,272 (50%) |
+| Transitland Atlas | 3,834 | 1,242 (32%) |
+| National Transit Database (FTA) | 1,187 | 157 (13%) |
+| rt.gtfs.zone (its own feeds) | 11 | 7 (64%) |
+
+| Listed by | Feeds |
+|---|---:|
+| Mobility Database | 2,272 |
+| Mobility Database + Transitland Atlas | 1,606 |
+| Transitland Atlas | 1,242 |
+| Mobility Database + National Transit Database (FTA) + Transitland Atlas | 577 |
+| National Transit Database (FTA) + Transitland Atlas | 405 |
+| National Transit Database (FTA) | 157 |
+| Mobility Database + National Transit Database (FTA) | 46 |
+| rt.gtfs.zone (its own feeds) | 7 |
+| rt.gtfs.zone (its own feeds) + Mobility Database + National Transit Database (FTA) + Transitland Atlas | 2 |
+| rt.gtfs.zone (its own feeds) + Mobility Database + Transitland Atlas | 2 |
+
+| Pair | Feeds in both | Schedule URLs in both | Identical zips in both |
+|---|---:|---:|---:|
+| Mobility Database + Transitland Atlas | 2,187 | 1,397 | 2,100 |
+| National Transit Database (FTA) + Transitland Atlas | 984 | 904 | 947 |
+| Mobility Database + National Transit Database (FTA) | 625 | 551 | 587 |
+| rt.gtfs.zone (its own feeds) + Mobility Database | 4 | 3 | 4 |
+| rt.gtfs.zone (its own feeds) + Transitland Atlas | 4 | 3 | 4 |
+| rt.gtfs.zone (its own feeds) + National Transit Database (FTA) | 2 | 2 | 2 |
+
+### Duplication
+
+2,965 of 6,411 feeds join more than one catalog entry. Entries are joined when they share:
+
+| Evidence | Feeds |
+|---|---:|
+| cleanedHash | 2,563 |
+| realtimeSibling | 252 |
+| reference | 1,021 |
+| sha256 | 2,574 |
+| url | 1,943 |
 <!-- stats:end -->
 
 ## When and how it is updated
