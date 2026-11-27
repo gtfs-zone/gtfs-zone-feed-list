@@ -43,7 +43,7 @@ here or in
 Rendered from `data/` by the mirror on every update.
 
 <!-- stats:start -->
-From catalog run `4296003f-b9f0-4bfc-bbfa-3e7660fbf1f4`, published 2026-11-26 12:15 UTC.
+From catalog run `694752af-11b9-440c-ba81-033970a9b6ae`, published 2026-11-27 12:15 UTC.
 
 | | |
 |---|---:|
@@ -61,15 +61,15 @@ From catalog run `4296003f-b9f0-4bfc-bbfa-3e7660fbf1f4`, published 2026-11-26 12
 
 | Feed state | Feeds |
 |---|---:|
-| up | 4,668 |
+| up | 4,663 |
 | partial | 105 |
-| down | 1,450 |
+| down | 1,455 |
 | unknown | 193 |
 
 | Schedule download | Feeds |
 |---|---:|
 | ok | 4,634 |
-| not_zip | 118 |
+| not_zip | 119 |
 | missing_files | 24 |
 | http_error | 19 |
 | parse_error | 9 |
@@ -82,16 +82,16 @@ Feeds with a schedule, by catalog, and how many no other catalog lists.
 
 | Catalog | Feeds | Only in this catalog |
 |---|---:|---:|
-| Mobility Database | 4,517 | 2,276 (50%) |
-| Transitland Atlas | 3,835 | 1,235 (32%) |
+| Mobility Database | 4,516 | 2,276 (50%) |
+| Transitland Atlas | 3,835 | 1,236 (32%) |
 | National Transit Database (FTA) | 1,187 | 157 (13%) |
 | rt.gtfs.zone (its own feeds) | 11 | 7 (64%) |
 
 | Listed by | Feeds |
 |---|---:|
 | Mobility Database | 2,276 |
-| Mobility Database + Transitland Atlas | 1,614 |
-| Transitland Atlas | 1,235 |
+| Mobility Database + Transitland Atlas | 1,613 |
+| Transitland Atlas | 1,236 |
 | Mobility Database + National Transit Database (FTA) + Transitland Atlas | 577 |
 | National Transit Database (FTA) + Transitland Atlas | 405 |
 | National Transit Database (FTA) | 157 |
@@ -102,7 +102,7 @@ Feeds with a schedule, by catalog, and how many no other catalog lists.
 
 | Pair | Feeds in both | Schedule URLs in both | Identical zips in both |
 |---|---:|---:|---:|
-| Mobility Database + Transitland Atlas | 2,195 | 1,401 | 2,109 |
+| Mobility Database + Transitland Atlas | 2,194 | 1,401 | 2,107 |
 | National Transit Database (FTA) + Transitland Atlas | 984 | 904 | 947 |
 | Mobility Database + National Transit Database (FTA) | 625 | 552 | 587 |
 | rt.gtfs.zone (its own feeds) + Mobility Database | 4 | 3 | 4 |
@@ -118,7 +118,7 @@ Feeds with a schedule, by catalog, and how many no other catalog lists.
 | cleanedHash | 2,568 |
 | realtimeSibling | 253 |
 | reference | 1,025 |
-| sha256 | 2,582 |
+| sha256 | 2,579 |
 | url | 1,948 |
 <!-- stats:end -->
 
